@@ -6,6 +6,14 @@ let mongoose = require ('mongoose');
 var port = process.env.PORT || 8000;
 var conectionUrl = 'mongodb://localhost:27017/ageectDB';
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
 app.use(bodyParser.urlencoded({
     extended: true
  }));
@@ -20,6 +28,7 @@ else
 console.log("AgeectDB connected successfully")
 
 app.use('/api', apiRoutes)
+
 app.listen(port, function () {
     console.log("Running RestHub on port " + port);
 });

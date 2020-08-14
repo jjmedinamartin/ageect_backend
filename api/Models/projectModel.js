@@ -30,6 +30,10 @@ var projectSchema = mongoose.Schema({
         type: String,
         required: false
     },
+    active: {
+        type: Boolean,
+        required: true
+    },
     createdAt: {
         type: Date,
         required: true
